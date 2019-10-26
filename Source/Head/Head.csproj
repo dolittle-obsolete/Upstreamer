@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="../../Build/MSBuild/default.props"/>
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <AssemblyName>Dolittle.TimeSeries.Upstreamer</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="../IoTHub/IoTHub.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Dolittle.TimeSeries.DataPoints" Version="1.*" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="../../Build/MSBuild/default.props"/>
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <AssemblyName>Dolittle.TimeSeries.Upstreamer.IoTHub</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Dolittle.TimeSeries.DataPoints" Version="1.*" />
+        <PackageReference Include="Microsoft.Azure.Devices.Client" Version="1.*" />
+    </ItemGroup>
+</Project>

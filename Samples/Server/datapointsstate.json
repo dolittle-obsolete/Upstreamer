@@ -1,0 +1,8 @@
+{
+    "endPoints": [
+        {
+            "target": "localhost:50052",
+            "interval": 1000
+        }
+    ]
+}
