@@ -21,28 +21,36 @@ namespace Dolittle.TimeSeries.Upstreamer.IoTHub
         readonly ILogger _logger;
         readonly DeviceClient _deviceClient;
         readonly ISerializer _serializer;
+        readonly Configuration _configuration;
 
         /// <summary>
         /// Initializes a new instance of <see cref="DataPointProcessor"/>
         /// </summary>
-        /// <param name="logger"></param>
+        /// <param name="configuration"></param>
         /// <param name="serializer"></param>
-        public DataPointProcessor(ILogger logger, ISerializer serializer)
+        /// <param name="logger"></param>
+        public DataPointProcessor(
+            Configuration configuration,
+            ISerializer serializer,
+            ILogger logger)
         {
             _logger = logger;
-            var connectionString = "";
-            _deviceClient = DeviceClient.CreateFromConnectionString(connectionString);
             _serializer = serializer;
+            _configuration = configuration;
+
+            if (IsEnabled) _deviceClient = DeviceClient.CreateFromConnectionString(configuration.ConnectionString);
+            else _logger.Information("IoT Hub is not enabled - missing connection string configuration?");
         }
 
         /// <summary>
-        /// 
+        /// Process single data points
         /// </summary>
-        /// <param name="dataPoint"></param>
-        /// <returns></returns>
+        /// <param name="dataPoint"><see cref="DataPoint{T}"/> to process</param>
         [DataPointProcessor]
         public async Task Process(DataPoint<Single> dataPoint)
         {
+            if (!IsEnabled) return;
+
             var json = _serializer.ToJson(dataPoint);
 
             _logger.Information($"DataPoint received : {dataPoint.Measurement.Value} : Json: '{json}'");
@@ -52,5 +60,7 @@ namespace Dolittle.TimeSeries.Upstreamer.IoTHub
 
             await _deviceClient.SendEventAsync(message).ConfigureAwait(false);
         }
+
+        bool IsEnabled => !string.IsNullOrEmpty(_configuration.ConnectionString);
     }
 }
