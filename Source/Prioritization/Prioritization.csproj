@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="../../Build/MSBuild/default.props"/>
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <AssemblyName>Dolittle.TimeSeries.Upstreamer.Prioritization</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Dolittle.TimeSeries" Version="1.*" />
+    </ItemGroup>
+</Project>

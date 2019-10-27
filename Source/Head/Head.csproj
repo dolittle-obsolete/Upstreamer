@@ -9,6 +9,8 @@
 
     <ItemGroup>
         <ProjectReference Include="../IoTHub/IoTHub.csproj"/>
+        <ProjectReference Include="../Prioritization/Prioritization.csproj"/>
+        <ProjectReference Include="../Buffering/Buffering.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

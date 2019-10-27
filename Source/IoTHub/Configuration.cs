@@ -6,6 +6,7 @@ using Dolittle.Configuration;
 
 namespace Dolittle.TimeSeries.Upstreamer.IoTHub
 {
+
     /// <summary>
     /// Represents the <see cref="IConfigurationObject">configuration object</see> for IoTHub
     /// </summary>
@@ -16,14 +17,23 @@ namespace Dolittle.TimeSeries.Upstreamer.IoTHub
         /// Initializes a new instance of <see cref="Configuration"/>
         /// </summary>
         /// <param name="connectionString">The connection string</param>
-        public Configuration(string connectionString)
+        /// <param name="format">The <see cref="Format"/> to send in</param>
+        public Configuration(
+            string connectionString,
+            Format format)
         {
             ConnectionString = connectionString;
+            Format = format;
         }
 
         /// <summary>
         /// Gets the connection string
         /// </summary>
         public string ConnectionString { get; }
+
+        /// <summary>
+        /// Gets the <see cref="Format"/> to send in
+        /// </summary>
+        public Format Format { get; }
     }
 }

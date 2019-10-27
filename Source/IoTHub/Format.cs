@@ -2,20 +2,22 @@
  *  Copyright (c) Dolittle. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-using Dolittle.Configuration;
 
 namespace Dolittle.TimeSeries.Upstreamer.IoTHub
 {
     /// <summary>
-    /// Represents the <see cref="ICanProvideDefaultConfigurationFor{T}">default configuration provider</see>
-    /// for <see cref="Configuration"/>
+    /// Defines supported formats
     /// </summary>
-    public class ConfigurationDefaultProvider : ICanProvideDefaultConfigurationFor<Configuration>
+    public enum Format
     {
-        /// <inheritdoc/>
-        public Configuration Provide()
-        {
-            return new Configuration(string.Empty, Format.JSON);
-        }
+        /// <summary>
+        /// Format used will be binary protobuf
+        /// </summary>
+        Protobuf = 1,
+
+        /// <summary>
+        /// Format used will be JSON
+        /// </summary>
+        JSON
     }
 }
